@@ -340,6 +340,7 @@ class SelectCafePage extends StatelessWidget {
                   padding: EdgeInsets.only(top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       /*First Favourite Item*/
                       Container(
@@ -379,7 +380,13 @@ class SelectCafePage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        OrderPageFriedBeeHoon()));
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
                             shadowColor: Colors.transparent,
@@ -1185,27 +1192,139 @@ class SelectCafePage extends StatelessWidget {
               ],
             ),
             /*Third Cafe Menu*/
-            ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "images/closed.png",
-                        height: 300,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 15),
-                        child: Text("Sorry, we're closed today",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                fontFamily: 'San Francisco UI')),
-                      ),
-                    ],
+            ListView(
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.only(bottom: 15),
+              scrollDirection: Axis.vertical,
+              children: [
+                /*Cafe Details*/
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Container(
+                        width: double.infinity,
+                        color: Colors.white,
+                        child: Container(
+                          padding:
+                              EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                          child: Row(
+                            children: [
+                              Container(
+                                // width: MediaQuery.of(context).size.width,
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.only(top: 5, bottom: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    /*Cafe Name*/
+                                    Container(
+                                      // width: MediaQuery.of(context).size.width,
+                                      padding:
+                                          EdgeInsets.only(top: 5, left: 10),
+                                      child: Text(
+                                        "Village 3 Mailisya",
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Container(
+                                        alignment: Alignment.centerLeft,
+                                        // width: MediaQuery.of(context).size.width,
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Row(
+                                            children: [
+                                              /*Star Rating*/
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: 5,
+                                                    left: 10,
+                                                    bottom: 10),
+                                                child: Icon(
+                                                  Icons.star,
+                                                  color: Colors.yellow[700],
+                                                  size: 18,
+                                                ),
+                                              ),
+                                              /*Rating Value*/
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: 10,
+                                                    left: 5,
+                                                    bottom: 10),
+                                                child: Text(
+                                                  "4.7",
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              /*A border line*/
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: 10,
+                                                    left: 5,
+                                                    bottom: 10),
+                                                child: Text(
+                                                  "|",
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                              ),
+                                              /*See Details*/
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    top: 10,
+                                                    left: 5,
+                                                    bottom: 10),
+                                                child: Text(
+                                                  "See Details",
+                                                  style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 18,
+                                                      decoration: TextDecoration
+                                                          .underline),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
                   ),
-                )),
+                ),
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "images/closed.png",
+                            height: 300,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 15),
+                            child: Text("Sorry, we're closed today",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24,
+                                    fontFamily: 'San Francisco UI')),
+                          ),
+                        ],
+                      ),
+                    )),
+              ],
+            ),
             /*Fourth Cafe Menu*/
             ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
@@ -1232,5 +1351,112 @@ class SelectCafePage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class OrderPageFriedBeeHoon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Add Item"),
+        ),
+        body: Column(
+          children: [
+            // Image of Fried Bee Hoon
+            Container(
+              child: AspectRatio(
+                aspectRatio: 300 / 150,
+                child: new Container(
+                    decoration: new BoxDecoration(
+                        image: new DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            alignment: FractionalOffset.topCenter,
+                            image: AssetImage("images/friedbeehoon.jpg")))),
+              ),
+            ),
+            // Food Name and Price
+            Container(
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 15, top: 15),
+                      child: Text(
+                        "Fried Bee Hoon",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'San Francisco Pro',
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(right: 15, top: 15),
+                      child: Text(
+                        "3.50",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'San Francisco Pro',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Count of items ordered
+            Container(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Text("hello world"),
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 15),
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.orange[900]),
+                    child: Row(
+                      children: [
+                        InkWell(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                              size: 16,
+                            )),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 3),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: Colors.white),
+                          child: Text(
+                            '3',
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                        InkWell(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 16,
+                            )),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ))
+          ],
+        ));
   }
 }
