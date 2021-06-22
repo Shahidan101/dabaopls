@@ -1354,82 +1354,208 @@ class SelectCafePage extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class OrderPageFriedBeeHoon extends StatelessWidget {
+  int _itemCountOne = 1;
+  int _addOnOneCountItemOne = 0;
+  int _addOnTwoCountItemOne = 0;
+  int _addOnThreeCountItemOne = 0;
+  double _itemPriceOne = 3.50;
+  double _addOnOnePriceOne = 3.00;
+  double _addOnTwoPriceOne = 4.00;
+  double _addOnThreePriceOne = 1.00;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Add Item"),
-        ),
-        body: Column(
-          children: [
-            // Image of Fried Bee Hoon
-            Container(
-              child: AspectRatio(
-                aspectRatio: 300 / 150,
-                child: new Container(
-                    decoration: new BoxDecoration(
-                        image: new DecorationImage(
-                            fit: BoxFit.fitWidth,
-                            alignment: FractionalOffset.topCenter,
-                            image: AssetImage("images/friedbeehoon.jpg")))),
-              ),
+      appBar: AppBar(
+        title: Text("Add Item"),
+      ),
+      body: ListView(
+        children: [
+          // Image of Fried Bee Hoon
+          Container(
+            child: AspectRatio(
+              aspectRatio: 300 / 150,
+              child: new Container(
+                  decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                          fit: BoxFit.fitWidth,
+                          alignment: FractionalOffset.topCenter,
+                          image: AssetImage("images/friedbeehoon.jpg")))),
             ),
-            // Food Name and Price
-            Container(
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
+          ),
+          // Food Name and Price
+          Container(
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
                       padding: EdgeInsets.only(left: 15, top: 15),
-                      child: Text(
-                        "Fried Bee Hoon",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'San Francisco Pro',
-                        ),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Fried Bee Hoon",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'San Francisco Pro',
+                            ),
+                          ),
+                        ],
+                      )),
+                  Container(
+                    padding: EdgeInsets.only(right: 15, top: 15),
+                    child: Text(
+                      _itemPriceOne.toStringAsFixed(2),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'San Francisco Pro',
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(right: 15, top: 15),
-                      child: Text(
-                        "3.50",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'San Francisco Pro',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            // Count of items ordered
-            Container(
-                child: Row(
+          ),
+          // Count of items ordered
+          Container(
+              padding: EdgeInsets.only(top: 35),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(right: 25),
+                    child: Container(
+                      padding: EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.transparent),
+                      child: Row(
+                        children: [
+                          Container(
+                              padding: EdgeInsets.only(right: 25),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.grey.shade300),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: InkWell(
+                                    borderRadius: BorderRadius.circular(12),
+                                    onTap: () {
+                                      if (_itemCountOne > 1) {
+                                        _itemCountOne--;
+                                      }
+                                      (context as Element).markNeedsBuild();
+                                    },
+                                    child: Icon(
+                                      Icons.remove,
+                                      color: Colors.amber[900],
+                                      size: 40,
+                                    )),
+                              )),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 3),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 3, vertical: 2),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                color: Colors.transparent),
+                            child: Text(
+                              _itemCountOne.toString(),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                              padding: EdgeInsets.only(left: 25),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.grey.shade300),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: InkWell(
+                                    borderRadius: BorderRadius.circular(12),
+                                    onTap: () {
+                                      _itemCountOne++;
+                                      (context as Element).markNeedsBuild();
+                                    },
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Colors.amber[900],
+                                      size: 40,
+                                    )),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
+                  /*Today's Favourites*/
+                  /*Title*/
+                ],
+              )),
+          // Add a Divider
+          Container(
+              padding: EdgeInsets.symmetric(vertical: 15), child: Divider()),
+          // Add Ons Title
+          Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 15, top: 5, bottom: 15),
+              child: Text(
+                "Add On",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              )),
+          // First Add On Item
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 15, top: 5, bottom: 15),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  child: Text("hello world"),
-                ),
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Fried Chicken",
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.normal),
+                    ),
+                    Text(
+                      _addOnOnePriceOne.toStringAsFixed(2),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
                 Container(
-                  padding: EdgeInsets.only(right: 15),
-                  child: Container(
-                    padding: EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.orange[900]),
+                    padding: EdgeInsets.only(right: 15),
                     child: Row(
                       children: [
-                        InkWell(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.remove,
-                              color: Colors.white,
-                              size: 16,
+                        Container(
+                            padding: EdgeInsets.only(left: 30, right: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    if (_addOnOneCountItemOne > 0) {
+                                      _addOnOneCountItemOne--;
+                                    }
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.amber[900],
+                                    size: 24,
+                                  )),
                             )),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 3),
@@ -1437,26 +1563,287 @@ class OrderPageFriedBeeHoon extends StatelessWidget {
                               EdgeInsets.symmetric(horizontal: 3, vertical: 2),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
-                              color: Colors.white),
+                              color: Colors.transparent),
                           child: Text(
-                            '3',
-                            style: TextStyle(color: Colors.black, fontSize: 16),
+                            _addOnOneCountItemOne.toString(),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                        InkWell(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 16,
-                            )),
+                        Container(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    _addOnOneCountItemOne++;
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.amber[900],
+                                    size: 24,
+                                  )),
+                            ))
                       ],
-                    ),
-                  ),
-                )
+                    ))
               ],
-            ))
-          ],
-        ));
+            ),
+          ),
+          // Second Add On Item
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 15, top: 5, bottom: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Fried Boneless Chicken",
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.normal),
+                    ),
+                    Text(
+                      _addOnTwoPriceOne.toStringAsFixed(2),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+                Container(
+                    padding: EdgeInsets.only(right: 15),
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 30, right: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    if (_addOnTwoCountItemOne > 0) {
+                                      _addOnTwoCountItemOne--;
+                                    }
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.amber[900],
+                                    size: 24,
+                                  )),
+                            )),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 3),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: Colors.transparent),
+                          child: Text(
+                            _addOnTwoCountItemOne.toString(),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    _addOnTwoCountItemOne++;
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.amber[900],
+                                    size: 24,
+                                  )),
+                            ))
+                      ],
+                    ))
+              ],
+            ),
+          ),
+          // Third Add On Item
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 15, top: 5, bottom: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Omelette",
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.normal),
+                    ),
+                    Text(
+                      _addOnThreePriceOne.toStringAsFixed(2),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+                Container(
+                    padding: EdgeInsets.only(right: 15),
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 30, right: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    if (_addOnThreeCountItemOne > 0) {
+                                      _addOnThreeCountItemOne--;
+                                    }
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.amber[900],
+                                    size: 24,
+                                  )),
+                            )),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 3),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: Colors.transparent),
+                          child: Text(
+                            _addOnThreeCountItemOne.toString(),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: InkWell(
+                                  borderRadius: BorderRadius.circular(12),
+                                  onTap: () {
+                                    _addOnThreeCountItemOne++;
+                                    (context as Element).markNeedsBuild();
+                                  },
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.amber[900],
+                                    size: 24,
+                                  )),
+                            ))
+                      ],
+                    ))
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+          elevation: 0.0,
+          color: Colors.transparent,
+          child: Container(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Material(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      child: MaterialButton(
+                        minWidth: 300,
+                        height: 65,
+                        onPressed: () {},
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 3),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  "Add to Basket",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'San Francisco Pro',
+                                      color: Colors.white),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  "-",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'San Francisco Pro',
+                                      color: Colors.white),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  ((_itemPriceOne * _itemCountOne) +
+                                          (_addOnOneCountItemOne *
+                                              _addOnOnePriceOne *
+                                              _itemCountOne) +
+                                          (_addOnTwoCountItemOne *
+                                              _addOnTwoPriceOne *
+                                              _itemCountOne) +
+                                          (_addOnThreeCountItemOne *
+                                              _addOnThreePriceOne *
+                                              _itemCountOne))
+                                      .toStringAsFixed(2),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'San Francisco Pro',
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        color: Colors.amber.shade900,
+                      ),
+                    ))
+              ],
+            ),
+          )),
+    );
   }
 }
