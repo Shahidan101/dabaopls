@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  milestone_progress: ^0.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -52,7 +53,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/logo.png
+    - images/logo_white.png
+    - images/logo_red.png
     - images/friedrice.jpg
     - images/friedkueyteow.jpg
     - images/spaghetti.jpg
@@ -68,6 +70,11 @@ flutter:
     - images/sweetsourchickenrice.jpg
     - images/tomyamayam.jpg
     - images/friedbeehoon.jpg
+    - images/completed.gif
+    - images/preparing.gif
+    - images/takeorder.gif
+    - images/collected.gif
+    - images/thankyou.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
