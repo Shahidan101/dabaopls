@@ -2757,6 +2757,7 @@ class OrderPageFriedBeeHoon extends StatelessWidget {
         title: Text("Add Item"),
       ),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
           // Image of Fried Bee Hoon
           Container(
@@ -3264,6 +3265,7 @@ class OrderPageTomYamAyam extends StatelessWidget {
         title: Text("Add Item"),
       ),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
           // Image of Fried Bee Hoon
           Container(
@@ -3508,6 +3510,7 @@ class CheckOutPage extends State<MyCheckOutPage> {
             ),
           ),
           body: ListView(
+            physics: BouncingScrollPhysics(),
             children: [
               // Order Summary
               Container(
@@ -3869,6 +3872,7 @@ class CheckOutPageTwo extends State<MyCheckOutPageTwo> {
         title: Text("Checkout"),
       ),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
           // Order Summary
           Container(
